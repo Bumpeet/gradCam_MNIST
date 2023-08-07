@@ -38,9 +38,11 @@ def main():
         in_img_vis = torch_tensor.permute(0,2,3,1).numpy() # converting this into B, W, H, C 
         #this line combines the original image and the heat map generated using the cam model
         visualization = show_cam_on_image(in_img_vis, np.transpose(gray_scale_cam,(1,2,0)),image_weight=0.7)  
-
-        st.image(Image.fromarray(visualization.squeeze()).resize((480,480)))
-        st.info(f"The model has predicted this to be a {torch.argmax(prediction).item()}")
+        if torch.max(prediction).item() >=0.5:
+            st.image(Image.fromarray(visualization.squeeze()).resize((480,480)))
+            st.success(f"The model has predicted this to be a {torch.argmax(prediction).item()}", icon="✅")
+        else:
+            st.warning(f'Upload the image containing the number', icon="⚠️")
         
 if __name__=="__main__":
     main()
