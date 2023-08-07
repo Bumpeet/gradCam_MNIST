@@ -40,7 +40,7 @@ def main():
         visualization = show_cam_on_image(in_img_vis, np.transpose(gray_scale_cam,(1,2,0)),image_weight=0.7)  
         conf = torch.max(prediction).item()
         pred = torch.argmax(prediction).item()
-        print(f'The confidence score and the prediction is: {conf}, {pred}')
+        st.toast(f'The confidence score and the prediction is: {conf}, {pred}')
         if conf >=0.5:
             st.image(Image.fromarray(visualization.squeeze()).resize((480,480)))
             st.success(f"The model has predicted this to be a {pred}", icon="✅")
