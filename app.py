@@ -43,7 +43,7 @@ def main():
         st.toast(f'The confidence score and the prediction is: {conf}, {pred}')
         if conf >=0.7:
             st.image(Image.fromarray(visualization.squeeze()).resize((480,480)))
-            st.success(f"The model has predicted this to be a {pred}", icon="✅")
+            st.success(f"The model has predicted this to be a {prediction}", icon="✅")
         else:
             st.warning(f'Upload the image containing the number', icon="⚠️")
         
