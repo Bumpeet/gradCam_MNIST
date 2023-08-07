@@ -16,5 +16,5 @@ class MNISTmodel(nn.Module):
         x = x.view(-1, 96)
         x = F.relu(self.fc1(x))
         x = self.fc2(x)
-        x = nn.Softmax(dim=1)(x)
+        # x = nn.Softmax(dim=1)(x)
         return x
